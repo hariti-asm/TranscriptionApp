@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\NotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,21 @@ use App\Http\Controllers\FileUploadController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', fn () => view('upload'));
+Route::get('/', function () {
+    return view('welcome');
+});
+// Route::get('/', fn () => view('upload'));
 Route::get('/success', [FileUploadController::class, 'success'])->name('fileUpload.success');
 Route::post('/', [FileUploadController::class, 'upload'])->name('fileUpload.upload');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('notes', NotesController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
