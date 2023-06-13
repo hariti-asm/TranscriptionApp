@@ -4,9 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Notes;
 use Illuminate\Http\Request;
+use App\Http\Requests\NotesRequest;
+use Illuminate\View\View;
+use App\Http\Controllers\NotesController;
+use Illuminate\Http\RedirectResponse;
 
 class NotesController extends Controller
 {
+
+
+    public function upload(NotesRequest $request)
+    {
+        // Create a variable referencing the uploaded file from the request
+        $file = $request->file('upload');
+
+        // Store the file in storage/app/uploads
+        $file->store('uploads');
+
+        // Redirect to the success msg
+         return redirect()->route('notes.success');
+
+
+
+    }
+    public function success()
+    {
+        return view('notes.success');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +38,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        //
+       return view('notes.upload');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FileUploadRequest extends FormRequest
+class NotesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class FileUploadRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,10 @@ class FileUploadRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+
+            return [
+                'upload' => 'required|image|max:10000',
+            ];
+
     }
 }

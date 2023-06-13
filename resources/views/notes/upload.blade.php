@@ -1,6 +1,11 @@
+@if ($errors->get('upload'))
+    <p>
+        {{ $errors->get('upload')[0] }}
+    </p>
+@endif
 <form
     method="POST"
-    action="{{ route('fileUpload.upload') }}"
+    action="{{ route('notes.upload') }}"
     enctype="multipart/form-data"
 >
     <!-- Laravel XSRF token injection -->
