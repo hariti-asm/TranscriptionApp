@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NotesController;
+use App\Http\Controllers\NoteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,9 +13,9 @@ Route::get('/', function () {
 
 
 
-Route::post('/notes', [NotesController::class, 'upload'])->name('notes.upload');
+Route::post('/notes', [NoteController::class, 'upload'])->name('notes.upload');
 Route::get('/notes', fn () => view('notes.upload'));
-Route::get('/notes/success', [NotesController::class, 'success'])->name('notes.success');
+Route::get('/notes/success', [NoteController::class, 'success'])->name('notes.success');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

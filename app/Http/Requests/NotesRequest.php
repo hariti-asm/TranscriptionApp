@@ -21,12 +21,12 @@ class NotesRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
-    {
 
-            return [
-                'upload' => 'required|image|max:10000',
-            ];
+     public function rules()
+{
+    return [
+        'upload' => 'required|mimetypes:audio/mpeg,audio/wav,audio/ogg,audio/mp3|max:100000',
+    ];
+}
 
-    }
 }

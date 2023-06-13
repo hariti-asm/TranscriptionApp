@@ -2,31 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notes;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use App\Http\Requests\NotesRequest;
 use Illuminate\View\View;
-use App\Http\Controllers\NotesController;
+use App\Http\Controllers\NoteController;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
-class NotesController extends Controller
+class NoteController extends Controller
 {
 
 
-    public function upload(NotesRequest $request)
-    {
-        // Create a variable referencing the uploaded file from the request
-        $file = $request->file('upload');
+    // public function upload(NotesRequest $request)
+    // {
+    //     // Create a variable referencing the uploaded file from the request
+    //     $file = $request->file('upload');
 
-        // Store the file in storage/app/uploads
-        $file->store('uploads');
+    //     // Store the file in storage/app/uploads
+    //     $file->store('uploads');
 
-        // Redirect to the success msg
-         return redirect()->route('notes.success');
+    //     // Redirect to the success msg
+    //      return redirect()->route('notes.success');
 
 
+
+    // }
+
+public function upload(NotesRequest $request)
+{
+
+         $file = $request->file('upload');
+
+         // Store the file in storage/app/uploads
+         $file->store('uploads');
+        // Generate a unique filename for the uploaded file
+        // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+
+        // $file->storeAs('uploads', $filename);
+        // $notes = Storage::files('uploads');
+        // Redirect to the success page with the uploaded file's filename
+        // return redirect()->route('notes.success', ['filename' => $filename]);
+        return view('notes.upload', [
+            'notes' => Note::with('user')->latest()->get(),
+        ]);
 
     }
+
+    // Handle the case when no file is uploaded
+    // Redirect or display an error message as needed
+    return redirect()->back()->withErrors('No file uploaded.');
+}
+
+
     public function success()
     {
         return view('notes.success');
