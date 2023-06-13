@@ -4,13 +4,7 @@
     </p>
 @endif
 
-@if ($notes)
-    <ul>
-        @foreach ($notes as $upload)
-            <li>{{ $upload }}</li>
-        @endforeach
-    </ul>
-@endif
+
 
 <form method="POST" action="{{ route('notes.upload') }}" enctype="multipart/form-data">
     <!-- Laravel XSRF token injection -->
@@ -22,7 +16,7 @@
     <!-- Button to submit our form -->
     <button type="submit">Upload</button>
 </form>
-<div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+{{-- <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
     @foreach ($notes as $note)
         <div class="p-6 flex space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -39,4 +33,4 @@
             </div>
         </div>
     @endforeach
-</div>
+</div> --}}

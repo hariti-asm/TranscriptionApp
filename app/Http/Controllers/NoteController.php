@@ -9,7 +9,6 @@ use Illuminate\View\View;
 use App\Http\Controllers\NoteController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\View;
 
 class NoteController extends Controller
 {
@@ -30,44 +29,30 @@ class NoteController extends Controller
 
     // }
 
-public function upload(NotesRequest $request)
-{
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+            $file->store('uploads');
+            return response('uploaded successflly');
 
-         $file = $request->file('upload');
 
-         // Store the file in storage/app/uploads
-         $file->store('uploads');
-        // Generate a unique filename for the uploaded file
-        // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            return view('notes.upload', [
+                'notes' => Note::with('user')->latest()->get(),
+            ]);
+        }
 
-        // $file->storeAs('uploads', $filename);
-        // $notes = Storage::files('uploads');
-        // Redirect to the success page with the uploaded file's filename
-        // return redirect()->route('notes.success', ['filename' => $filename]);
-        return view('notes.upload', [
-            'notes' => Note::with('user')->latest()->get(),
-        ]);
-
+        return redirect()->back()->withErrors('No file uploaded.');
     }
-
-    // Handle the case when no file is uploaded
-    // Redirect or display an error message as needed
-    return redirect()->back()->withErrors('No file uploaded.');
-}
-
 
     public function success()
     {
         return view('notes.success');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-       return view('notes.upload');
+        return view('notes.upload');
     }
 
     /**
