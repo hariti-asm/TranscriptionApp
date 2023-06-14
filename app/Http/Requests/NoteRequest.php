@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NotesRequest extends FormRequest
+class NoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,6 +13,7 @@ class NotesRequest extends FormRequest
      */
     public function authorize()
     {
+
         return true;
     }
 
@@ -21,12 +22,10 @@ class NotesRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-
-     public function rules()
-{
-    return [
-        'upload' => 'required|mimetypes:audio/mpeg,audio/wav,audio/ogg,audio/mp3|max:100000',
-    ];
-}
-
+    public function rules()
+    {
+        return [
+            'upload' => 'required|mimetypes:audio/mpeg,audio/wav,audio/ogg,audio/mp3|max:100000',
+        ];
+    }
 }

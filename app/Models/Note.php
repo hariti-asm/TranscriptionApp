@@ -12,7 +12,7 @@ class Note extends Model
     protected $table = 'notes' ;
     protected $fillable =[
 
-        'filename',
+        'upload',
     ];
     public function user(): BelongsTo
     {

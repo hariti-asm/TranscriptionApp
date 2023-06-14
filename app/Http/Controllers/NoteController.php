@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
-use App\Http\Requests\NotesRequest;
+use App\Http\Requests\NoteRequest;
 use Illuminate\View\View;
 use App\Http\Controllers\NoteController;
 use Illuminate\Http\RedirectResponse;
@@ -14,45 +14,39 @@ class NoteController extends Controller
 {
 
 
-    // public function upload(NotesRequest $request)
-    // {
-    //     // Create a variable referencing the uploaded file from the request
-    //     $file = $request->file('upload');
-
-    //     // Store the file in storage/app/uploads
-    //     $file->store('uploads');
-
-    //     // Redirect to the success msg
-    //      return redirect()->route('notes.success');
 
 
 
-    // }
-
-    public function upload(Request $request)
+    public function store(NoteRequest $request): RedirectResponse
     {
-        if ($request->hasFile('upload')) {
-            $file = $request->file('upload');
-            $file->store('uploads');
-            return response('uploaded successflly');
+        $validated = $request->validate([
+            'upload' => 'required|mimetypes:audio/mpeg,audio/wav,audio/ogg,audio/mp3|max:100000',
+        ]);
 
+        $file = $request->file('upload');
+         $filename = $file->getClientOriginalName(); // Get the original file name
+        $file->store('uploads'); // Store the file with the original name
 
-            return view('notes.upload', [
-                'notes' => Note::with('user')->latest()->get(),
-            ]);
-        }
+         $validated['upload'] = $filename; // Update the validated data with the file name
 
-        return redirect()->back()->withErrors('No file uploaded.');
+        $request->user()->notes()->create($validated);
+        return redirect()->route('notes.index');
+
     }
+
+
 
     public function success()
     {
         return view('notes.success');
     }
 
-    public function index()
+    public function index(): View
     {
-        return view('notes.upload');
+        return view('notes.index', [
+            'notes' => Note::with('user')->latest()->get(),
+        ]);
+
     }
 
     /**
@@ -71,10 +65,6 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -105,7 +95,7 @@ class NoteController extends Controller
      * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Notes $notes)
+    public function update(Request $request, Note $note)
     {
         //
     }
@@ -116,8 +106,14 @@ class NoteController extends Controller
      * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notes $notes)
+    public function destroy(Note $note):RedirectResponse
     {
-        //
+        $this->authorize('delete',$note);
+        $note->delete();
+        return redirect(route('notes.index'));
+
+
     }
+
+
 }

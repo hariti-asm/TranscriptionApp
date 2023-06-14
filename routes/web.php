@@ -13,8 +13,9 @@ Route::get('/', function () {
 
 
 
-Route::post('/notes', [NoteController::class, 'upload'])->name('notes.upload');
-Route::get('/notes', fn () => view('notes.upload'));
+Route::resource('notes', NoteController::class)
+    ->only(['index', 'store',  'update','destroy'])
+    ->middleware(['auth', 'verified']);
 Route::get('/notes/success', [NoteController::class, 'success'])->name('notes.success');
 
 Route::get('/dashboard', function () {

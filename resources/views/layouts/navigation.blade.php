@@ -15,9 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('notes.upload')" :active="request()->routeIs('notes.index')">
-                        {{ __('notes') }}
+                    <x-nav-link :href="route('notes.index')" :active="request()->routeIs('notes.index')">
+                        {{ __('Notes') }}
                     </x-nav-link>
+                    {{-- <x-nav-link :href="route('transcriptions.index')" :active="request()->routeIs('transcriptions.index')">
+                        {{ __('Transcriptions') }}
+                    </x-nav-link> --}}
                 </div>
             </div>
 
@@ -36,7 +39,7 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
+                    <x-slot name="NoteController">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
