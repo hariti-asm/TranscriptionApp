@@ -67,7 +67,8 @@
                         <p class="mt-4 text-xm text-gray-900">{{ $note->upload }}</p>
                         <div class="flex justify-between items-center">
                             <audio controls class="flex-1">
-                                {{-- <source src="{{ asset('../uploads/' . $note->upload) }}"> --}}
+                            <source src="{{ Storage::url('uploads/' . $note->upload) }}">
+
                             </audio>
                             @if ($note->user->is(auth()->user()))
                                 <form method="POST" action="{{ route('notes.destroy', $note) }}">
