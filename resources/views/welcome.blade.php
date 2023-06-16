@@ -35,8 +35,7 @@
                     @endauth
                 </div>
             @endif
-            <script lang="ts">
-            </script>
+
 
             <div class=" h-full mx-auto flex flex-col justify-center items-center">
                 <h1 class="text-6xl font-semibold">Audio<span class="text-success">Scribe</span></h1>
@@ -44,7 +43,6 @@
                     transform your voice to clear words just in seconds
                 </p>
                 <p class="text-2xl">Just hit record. Then start rambling AudioScribe</p>
-                <p />
                 <p class="text-2xl mr-52">will clean things up when you're done.</p>
                 <div class="mt-10">
                     <button class="btn btn-success rounded-full w-full font-sans text-xl">Get started</button>

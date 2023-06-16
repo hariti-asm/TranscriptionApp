@@ -1,4 +1,5 @@
-@if ($errors->get('upload'))
+
+    @if ($errors->get('upload'))
     <p>
         {{ $errors->get('upload')[0] }}
     </p>
@@ -85,3 +86,5 @@
             </div>
         @endforeach
     </div>
+
+

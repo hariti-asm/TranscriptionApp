@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Jobs;
+use App\Models\Note;
+use App\Services\AudioProcessor;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -20,16 +22,16 @@ class TranscribeNotes implements ShouldQueue
      */
     public function __construct()
     {
-        //
-    }
+        public Note $note,
+    }{}
 
     /**
      * Execute the job.
      *
      * @return void
      */
-    public function handle()
+    public function handle( AudioProcessor $processor) :void
     {
-        //
+
     }
 }

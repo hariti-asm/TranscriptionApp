@@ -21,6 +21,9 @@
                     {{-- <x-nav-link :href="route('transcriptions.index')" :active="request()->routeIs('transcriptions.index')">
                         {{ __('Transcriptions') }}
                     </x-nav-link> --}}
+                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                        {{ __('Account') }}
+                    </x-nav-link>
                 </div>
             </div>
 
