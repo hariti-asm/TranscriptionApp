@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+use OpenAI\Laravel\Facades\OpenAI;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,8 +11,14 @@ Route::get('/', function () {
 
 
 
+Route::get('/openai', function () {
+    $result = OpenAI::completions()->create([
+        'model' => 'text-davinci-003',
+        'prompt' => 'PHP is',
+    ]);
 
-
+    echo $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
+});
 
 Route::resource('notes', NoteController::class)
     ->only(['index', 'store',  'update','destroy'])

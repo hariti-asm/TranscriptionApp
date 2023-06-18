@@ -35,7 +35,8 @@
                 <p class="text-2xl ">Just hit record. Then start rambling AudioScribe</p>
                 <p class="text-2xl mr-52 ">will clean things up when you're done.</p>
                 <div class="mt-10">
-                    <a  href="{{ route('dashboard') }}" class="btn btn-success rounded-full w-full font-sans text-xl">Get started</a>
+                    <a  href="{{ route('dashboard') }}"
+                     class="btn btn-success rounded-full w-full font-sans text-xl">Get started</a>
 
                 </div>
                 <footer class="px-4 py-8 text-gray-600 w-full">
