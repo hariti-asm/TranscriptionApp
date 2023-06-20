@@ -12,6 +12,7 @@ Route::get('/', function () {
 
 
 Route::get('/openai', function () {
+
     $result = OpenAI::completions()->create([
         'model' => 'text-davinci-003',
         'prompt' => 'PHP is',

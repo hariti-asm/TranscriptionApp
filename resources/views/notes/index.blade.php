@@ -6,44 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- @vite('resources/js/app.js') --}}
     @vite('resources/css/app.css')
-
 </head>
 <body>
-
-
-
-
-    <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-        @foreach ($notes as $note)
-            <div class="p-6 flex space-x-2">
-                <div class="flex-1">
-                    <div >
-                        <p class="mt-4 text-xm text-gray-900">{{ $note->upload }}</p>
-                        <div class="flex justify-between" >
-                            <audio controls>
+    <h1 class="text-center mt-6 mb-6">Your Notes</h1>
+    <div class="overflow-x-auto">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Audio</th>
+                <th>Note</th>
+                <th>Delete</th>
+                <th>Transcribe</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($notes as $note)
+                <tr>
+                    <td>
+                        <audio controls>
                             <source src="{{ Storage::url('uploads/' . $note->upload) }}">
+                        </audio>
 
-                            </audio>
-                            @if ($note->user->is(auth()->user()))
-                                <form method="POST" action="{{ route('notes.destroy', $note) }}" class="flex gap-4">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();" class="your-button-styles">
-                                        {{ __('Delete') }}
-                                    </button>
-                                    <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();" class="your-button-styles">
-                                        {{ __('Transcribe') }}
-                                    </button>
-                                </form>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
+                    </td>
 
-
-
+                    <td>
+                        {{ $note->upload }}
+                    </td>
+                    <td>
+                        @if ($note->user->is(auth()->user()))
+                            <form method="POST" action="{{ route('notes.destroy', $note) }}" class="flex gap-4">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-full p-6 py-1 text-center mx-auto btn-success">
+                                    {{ __('Delete') }}
+                                </button>
+                            </form>
+                        @endif
+                    </td>
+                    <td>
+                        @if ($note->user->is(auth()->user()))
+                            <form method="POST" action="{{ route('notes.store', $note) }}" class="flex gap-4">
+                                @csrf
+                                <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();"  class="rounded-full px-4 py-1 text-center mx-auto btn-success">
+                                    {{ __('Transcribe') }}
+                                </button>
+                            </form>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

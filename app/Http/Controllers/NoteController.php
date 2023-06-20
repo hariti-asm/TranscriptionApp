@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use App\Http\Controllers\NoteController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class NoteController extends Controller
 {
@@ -32,18 +33,19 @@ class NoteController extends Controller
     //    $audiopath =$file->storeAs('public/uploads', $filename);
        //return audio path
     //    dd($request->all());
+    // $yourApiKey = getenv('OPENAI_API_KEY');
+    // $client = OpenAI::client($yourApiKey);
+        // $response = $client->audio()->transcribe([
+        //     'model' => 'whisper-1',
+        //     'file' => fopen('audio.mp3', 'r'),
+        //     'response_format' => 'verbose_json',
+        // ]);
 
-        $response = $client->audio()->transcribe([
-            'model' => 'whisper-1',
-            'file' => fopen('audio.mp3', 'r'),
-            'response_format' => 'verbose_json',
-        ]);
-
-       $transcript= $response->task; // 'transcribe'
-        $response->language; // 'english'
-        $response->duration; // 2.95
-        $transcript=
-        $response->text; // 'Hello, how are you?'
+    //    $transcript= $response->task; // 'transcribe'
+    //     $response->language; // 'english'
+    //     $response->duration; // 2.95
+    //     $transcript=
+    //     $response->text; // 'Hello, how are you?'
         $request->user()->notes()->create($validated);
         return redirect()->route('notes.index');
 
