@@ -19,11 +19,11 @@ Route::get('/openai', function () {
 
     echo $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
 });
-
 Route::resource('notes', NoteController::class)
     ->only(['index', 'store',  'update','destroy'])
     ->middleware(['auth', 'verified']);
 Route::get('/notes/success', [NoteController::class, 'success'])->name('notes.success');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

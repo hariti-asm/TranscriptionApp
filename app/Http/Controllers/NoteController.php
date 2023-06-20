@@ -17,22 +17,38 @@ class NoteController extends Controller
 
 
 
+
     public function store(NoteRequest $request): RedirectResponse
     {
         $validated = $request->validate([
             'upload' => 'required|mimetypes:audio/mpeg,audio/wav,audio/ogg,audio/mp3|max:100000',
         ]);
 
-        $file = $request->file('upload');
+         $file = $request->file('upload');
          $filename = $file->getClientOriginalName(); // Get the original file name
-        $file->store('uploads'); // Store the file with the original name
+         $file->store('uploads'); // Store the file with the original name
 
          $validated['upload'] = $filename; // Update the validated data with the file name
+    //    $audiopath =$file->storeAs('public/uploads', $filename);
+       //return audio path
+    //    dd($request->all());
 
+        $response = $client->audio()->transcribe([
+            'model' => 'whisper-1',
+            'file' => fopen('audio.mp3', 'r'),
+            'response_format' => 'verbose_json',
+        ]);
+
+       $transcript= $response->task; // 'transcribe'
+        $response->language; // 'english'
+        $response->duration; // 2.95
+        $transcript=
+        $response->text; // 'Hello, how are you?'
         $request->user()->notes()->create($validated);
         return redirect()->route('notes.index');
 
     }
+
 
 
 
