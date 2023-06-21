@@ -18,15 +18,30 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <label class="label text-xl" for="name" :value="__('Name')"> <span>Name</span></label>
+
+                <input id="name" name="name" type="text"
+				class="input w-full rounded-full border-gray-200 text-xl"
+
+                :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                <label class="label text-xl" for="email" :value="__('Email')"> <span>Email</span></label>
+			<input
+				name="email"
+				type="email"
+				id="email"
+				placeholder="Email"
+
+				class="input w-full rounded-full border-gray-200 text-xl"
+                :value="old('email', $user->email)"
+                required autofocus autocomplete="username"
+			/>
+
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -48,7 +63,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <button class="btn btn-success rounded-full mt-4">{{ __('Save') }}</button>
 
             @if (session('status') === 'profile-updated')
                 <p
