@@ -3,14 +3,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class=" shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 mx-auto">
+            <div class=" sm:rounded-lg">
+                <div class=" text-gray-900 mx-auto">
 
                     <p
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
-                    x-init="setTimeout(() => show = false, 5000)"
+                    x-init="setTimeout(() => show = false, 3000)"
                     class="text-sm text-gray-600 text-center"
                 >{{ __("You're logged in!") }}</p>
                 </div>
@@ -27,8 +27,8 @@
 
 
 <!-- Open the modal using ID.showModal() method -->
-<div class="mx-auto flex justify-center">
-  <button class="btn btn-circle" onclick="my_modal_1.showModal()">
+<div class="mx-auto flex justify-center items-center ">
+  <button class="btn btn-circle " onclick="my_modal_1.showModal()">
     <svg
       class="h-6 w-6"
       stroke="currentColor"
