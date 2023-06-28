@@ -26,7 +26,6 @@
 
 
 
-<!-- Open the modal using ID.showModal() method -->
 <div class="mx-auto flex justify-center items-center ">
   <button class="btn btn-circle " onclick="my_modal_1.showModal()">
     <svg
