@@ -37,7 +37,8 @@
                             <form method="POST" action="{{ route('notes.destroy', $note) }}" class="flex gap-4">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-full p-6 py-1 text-center mx-auto btn-success">
+
+                                <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();"  class="rounded-full  text-center mx-auto  max-h-6 py-1 px-4 -ml-2  btn-success ">
                                     {{ __('Delete') }}
                                 </button>
                             </form>
@@ -47,7 +48,7 @@
                         @if ($note->user->is(auth()->user()))
                             <form method="POST" action="{{ route('notes.store', $note) }}" class="flex gap-4">
                                 @csrf
-                                <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();"  class="rounded-full px-4 py-1 text-center mx-auto btn-success">
+                                <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();"  class="rounded-full  text-center mx-auto  max-h-6 py-1 px-3 -ml-2  btn-success ">
                                     {{ __('Transcribe') }}
                                 </button>
                             </form>

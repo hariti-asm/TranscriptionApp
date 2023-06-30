@@ -99,7 +99,7 @@
 
             <p id="timer" class="text-center text-xl mt-4"></p>
 <div class="flex justify-between  ">
-  <button type="submit" onclick="transcribe() " class="btn mt-6">transcribe</button>
+  <button type="submit" onclick="transcribe() " id="transcribeButton" class="btn mt-6 hidden">transcribe</button>
 
       <div class="modal-action">
         <!-- if there is a button, it will close the modal -->
@@ -149,6 +149,8 @@
       document.getElementById('timer').innerText = `Recording time: ${totalRecordedSeconds} seconds`; // Update displayed timer
       updateButtonVisibility(false); // Hide stop button, show start button
       isRecording = false;
+      document.getElementById('transcribeButton').classList.remove('hidden');
+
       console.log("stop recording");
     }
 
