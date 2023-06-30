@@ -98,11 +98,14 @@
               </button>
 
             <p id="timer" class="text-center text-xl mt-4"></p>
+<div class="flex justify-between  ">
+  <button type="submit" onclick="transcribe() " class="btn mt-6">transcribe</button>
 
       <div class="modal-action">
         <!-- if there is a button, it will close the modal -->
         <button class="btn " onclick="my_modal_1.close()">Close</button>
       </div>
+    </div>
     </div>
   </dialog>
 
@@ -183,6 +186,9 @@
 
     function getCurrentSecond() {
       return parseInt(document.getElementById('timer').innerText.split(' ')[2]);
+    }
+    function transcribe(){
+      console.log("transcribing....")
     }
   </script>
 </x-app-layout>
