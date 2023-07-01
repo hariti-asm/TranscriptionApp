@@ -61,10 +61,12 @@
             @csrf
 
             <input name="upload" type="file" accept="audio/x-aiff, audio/flac, audio/mpeg, audio/ogg, audio/wav, audio/mp3"  />
+            <input id="audioFileInput" type="file" name="audio" accept="audio/*" style="display: none;">
 
             <button type="submit">Upload</button>
 
           </form>
+
         <h4 class=" text-xl font-semibold mb-5 mt-3">Upload audio from computer</h4>
         <p class="">or drag and drop here</p>
         <p class=" mb-4">(.mp4, .m4a, .mp3, .webm)</p>
@@ -99,9 +101,9 @@
 
             <p id="timer" class="text-center text-xl mt-4"></p>
 <div class="flex justify-between  ">
-  <button type="submit" onclick="transcribe() " id="transcribeButton" class="btn mt-6 hidden">transcribe</button>
+  <button type="submit" id="transcribeButton" class="btn mt-6 hidden">transcribe</button>
 
-      <div class="modal-action">
+      <div class="modal-action ">
         <!-- if there is a button, it will close the modal -->
         <button class="btn " onclick="my_modal_1.close()">Close</button>
       </div>
@@ -189,8 +191,6 @@
     function getCurrentSecond() {
       return parseInt(document.getElementById('timer').innerText.split(' ')[2]);
     }
-    function transcribe(){
-      console.log("transcribing....")
-    }
+
   </script>
 </x-app-layout>

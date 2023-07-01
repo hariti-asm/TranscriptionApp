@@ -24,7 +24,7 @@
                 <tr>
                     <td>
                         <audio controls>
-                            <source src="{{ Storage::url('uploads/' . $note->upload) }}">
+                            <source src="{{ Storage::url('public/upload/sample-6s.mp3' . $note->upload) }}">
                         </audio>
 
                     </td>

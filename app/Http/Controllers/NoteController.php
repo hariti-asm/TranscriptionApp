@@ -27,7 +27,9 @@ class NoteController extends Controller
 
          $file = $request->file('upload');
          $filename = $file->getClientOriginalName(); // Get the original file name
-         $file->store('uploads'); // Store the file with the original name
+         $path = $file->store('public/uploads'); // Store the file with the original name
+
+         $validated['upload_path'] = $path;
 
          $validated['upload'] = $filename; // Update the validated data with the file name
     //    $audiopath =$file->storeAs('public/uploads', $filename);
