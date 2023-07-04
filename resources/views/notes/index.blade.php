@@ -23,10 +23,7 @@
             @foreach ($notes as $note)
                 <tr>
                     <td>
-                        <audio controls>
-                            <source src="{{ Storage::url('public/upload/sample-6s.mp3' . $note->upload) }}">
-                        </audio>
-
+                        <audio controls src="{{ Storage::url($note->upload_path) }}" />
                     </td>
 
                     <td>
