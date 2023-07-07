@@ -20,7 +20,6 @@ class NoteController extends Controller
 
 
 
-
     public function store(NoteRequest $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -64,29 +63,27 @@ curl_close($curl);
 
 if ($error) {
   dd( "Erreur lors de l'exécution de la requête cURL : " . $error);
-} else {
-  dd($response);
+}
+
+else {
+ dd($response);
+
+    // $transcription = json_decode($response, true);
+    // if (isset($transcription['error'])) {
+    //     dd("Error in transcription API response: " . $transcription['error']['message']);
+    // }
+    // $text = $transcription['data'][0]['text'];
+
+    // // Update the note with the transcription text
+    // $note = new Note($validated);
+    // $note->text = $text;
+    // $note->save();
 }
 
 
 
-//      $ApiKey = getenv('OPENAI_API_KEY');
-
-//    $client = OpenAI::client($ApiKey);
-
-// echo $result['choices'][0]['text']; //
-
-//         $response = $client->audio()->transcribe([
-//             'model' => 'whisper-1',
-//             'file' => fopen('audio.mp3', 'r'),
-//             'response_format' => 'verbose_json',
-//         ]);
-
-//        $transcript= $response->task; // 'transcribe'
-//         $response->language; // 'english'
-//         $response->duration; // 2.95
 //         $transcript=
-//         $response->text; // 'Hello, how are you?'
+//         $response->text;
 //         $request->user()->notes()->create($validated);
         return redirect()->route('notes.index');
 
