@@ -30,54 +30,53 @@ class NoteController extends Controller
          $filePath= $file->path();
          $filename = $file->getClientOriginalName();
          $mimeType = $file->getMimeType();
-         $path = $file->store('public/uploads'); // Store the file with the original name
+         $path = $file->store('public/uploads');
         //  dd($path);
 
          $validated['upload_path'] = $path;
 
-         $validated['upload'] = $filename; // Update the validated data with the file name
-
+         $validated['upload'] = $filename;
     //   dd($request->all());
 
 
-$curl = curl_init();
+        $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.openai.com/v1/audio/transcriptions',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_POST => true,
-  CURLOPT_POSTFIELDS => array(
-    'file' => new \CURLFile($filePath, $mimeType, $filename),
-    'model' => 'whisper-1'
-  ),
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer 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',
-    'Content-Type: multipart/form-data'
-  )
-));
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.openai.com/v1/audio/transcriptions',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => array(
+            'file' => new \CURLFile($filePath, $mimeType, $filename),
+            'model' => 'whisper-1'
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer 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',
+            'Content-Type: multipart/form-data'
+        )
+        ));
 
-$response = curl_exec($curl);
-$error = curl_error($curl);
+        $response = curl_exec($curl);
+        $error = curl_error($curl);
 
-curl_close($curl);
+        curl_close($curl);
 
-if ($error) {
-  dd( "Erreur lors de l'exécution de la requête cURL : " . $error);
-}
+        if ($error) {
+        dd( "Erreur lors de l'exécution de la requête cURL : " . $error);
+        }
 
-else {
- dd($response);
+        else {
+        dd($response);
 
-    // $transcription = json_decode($response, true);
-    // if (isset($transcription['error'])) {
-    //     dd("Error in transcription API response: " . $transcription['error']['message']);
-    // }
-    // $text = $transcription['data'][0]['text'];
+        // $transcription = json_decode($response, true);
+        // if (isset($transcription['error'])) {
+        //     dd("Error in transcription API response: " . $transcription['error']['message']);
+        // }
+        // $text = $transcription['data'][0]['text'];
 
-    // // Update the note with the transcription text
-    // $note = new Note($validated);
-    // $note->text = $text;
-    // $note->save();
+        // // Update the note with the transcription text
+        // $note = new Note($validated);
+        // $note->text = $text;
+        // $note->save();
 }
 
 
