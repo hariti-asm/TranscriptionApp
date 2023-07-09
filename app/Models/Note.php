@@ -13,7 +13,7 @@ class Note extends Model
     protected $fillable =[
 
         'upload',
-        'text',
+        'transcript'
     ];
     public function user(): BelongsTo
     {

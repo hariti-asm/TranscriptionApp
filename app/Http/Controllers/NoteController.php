@@ -50,7 +50,7 @@ class NoteController extends Controller
             'model' => 'whisper-1'
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer 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',
+            'Authorization: Bearer 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',
             'Content-Type: multipart/form-data'
         )
         ));
@@ -65,25 +65,19 @@ class NoteController extends Controller
         }
 
         else {
-        dd($response);
+        // dd($response);
 
-        // $transcription = json_decode($response, true);
-        // if (isset($transcription['error'])) {
-        //     dd("Error in transcription API response: " . $transcription['error']['message']);
-        // }
-        // $text = $transcription['data'][0]['text'];
+       $responseData = json_decode($response, true);
+       $transcript = $responseData['text'];
+       $validated['transcript'] = $transcript;
 
-        // // Update the note with the transcription text
-        // $note = new Note($validated);
-        // $note->text = $text;
-        // $note->save();
+       $request->user()->notes()->create($validated);
+
+
 }
 
 
 
-//         $transcript=
-//         $response->text;
-//         $request->user()->notes()->create($validated);
         return redirect()->route('notes.index');
 
     }
