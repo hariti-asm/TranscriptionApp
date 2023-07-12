@@ -13,12 +13,16 @@
     <div>
         @foreach ($notes as $note)
             @auth
-            <div class="flex">
-                <textarea rows="3"   class=" focus:border-spacing-2    focus:border-violet-600 block w-full max-w-xl overflow-hidden  my-1 border border-success rounded-md  " readonly >{{ $note->transcript }}
+                <div class="flex space-x-2">
+                    <textarea rows="3"   class=" focus:border-spacing-2    focus:border-success  w-full max-w-xl overflow-hidden  my-1 border border-success rounded-md  " readonly >{{ $note->transcript }}
 
-                </textarea>
+                    </textarea>
+                    <textarea rows="3"   class=" focus:border-spacing-2    focus:border-success  w-full max-w-xl overflow-hidden  my-1 border border-success rounded-md  " readonly >{{ $note->transcript }}
 
-            </div>
+                    </textarea>
+
+
+                </div>
 
             @else
                 <p>Please login to view the transcribed text.</p>
