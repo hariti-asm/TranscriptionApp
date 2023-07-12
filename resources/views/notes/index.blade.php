@@ -8,15 +8,17 @@
     @vite('resources/css/app.css')
 </head>
 <body>
+
     <h1 class="text-center mt-6 mb-6">Your Notes</h1>
     <div>
         @foreach ($notes as $note)
             @auth
-
-                <textarea class="textarea  textarea-success w-full mr-11 max-w-sm overflow-hidden resize-none">{{ $note->transcript }}
+            <div class="flex">
+                <textarea rows="3"   class=" focus:border-spacing-2    focus:border-violet-600 block w-full max-w-xl overflow-hidden  my-1 border border-success rounded-md  " readonly >{{ $note->transcript }}
 
                 </textarea>
 
+            </div>
 
             @else
                 <p>Please login to view the transcribed text.</p>
