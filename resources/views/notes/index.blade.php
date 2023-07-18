@@ -22,7 +22,7 @@
                 </div>
 
             @else
-                <p>Please login to view the transcribed text!.</p>
+                <p>Please login to view the transcribed text.</p>
             @endauth
         @endforeach
     </div>
