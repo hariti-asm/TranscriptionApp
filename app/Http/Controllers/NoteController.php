@@ -50,7 +50,7 @@ class NoteController extends Controller
             'model' => 'whisper-1'
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer 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',
+            'Authorization: Bearer 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',
             'Content-Type: multipart/form-data'
         )
         ));
