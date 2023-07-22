@@ -68,7 +68,7 @@
                     name=" password_confirmation"
                     type="password"
                     id="password_confirmation"
-                    placeholder="*******"
+                    placeholder="******"
                     required
                     minLength={6}
                     required autocomplete="new-password"
